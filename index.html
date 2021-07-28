@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Home</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;900&display=swap" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+	   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+	   crossorigin=""/>
+	
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+		   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+		   crossorigin="">
+		</script>
+
+		<script src="js/leaflet-providers.js"></script>
+</head>
+
+
+<body>
+		<div class="nav">
+			<ul>
+				<img class="logo" src="links/uic.png">
+				<h2>UPP 465: Web GIS</h2>
+				<li><a href="index2.html">About</a></li>
+				<li><a href="index.html">Home</a></li>
+			</ul>
+		</div>
+
+
+		<div class="body">
+
+			<div class="introtext">
+				<h1>Introduction to Leaflet Maps</h1>
+				<h2>My Route from Home to Woodridge Mall</h2>
+				<p>This Leaflet map shows the route I take to get from my house to Woodridge Mall.</p> <br>
+
+				<p class="source"> <b> Contributors: </b><br>
+
+					<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">Jawg Maps</a> 
+
+					<br>
+
+					<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 
+
+				</p>
+
+			</div>
+
+
+				<div id="map"></div>
+
+
+					<script>
+						//initialize map
+						var myMap = L.map('map').setView([41.6,-87.5445], 14.5);
+						// add base layer
+						var Jawg_Sunny = L.tileLayer('https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+							attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> <a href="https://www.openstreetmap.org/copyright">&copy; OpenStreetMap</a> contributors',
+							minZoom: 0,
+							maxZoom: 22,
+							subdomains: 'abcd',
+							accessToken: 'RbTQvk3gGa1chPMiHIqo0ISvj0gpPwMP2Lpbb53AgxvuAhiuxgIWdJmVSc3UN6gJ'
+							}).addTo(myMap);
+						// add marker for home
+						var myHome = L.icon({
+							iconUrl: 'links/home.png',
+							iconSize: [32,50],
+						});
+						var marker=L.marker([41.604646903445015, -87.52955910152384],{
+							icon:myHome
+						}).addTo(myMap).bindPopup("My Home");
+						// add line and coordinates
+						var line = L.polyline([[41.60458680841929, -87.529557770366], [41.60458131861528, -87.52985731633461],[41.596850799748665, -87.52979873782752],[41.59707338926352, -87.53187647189763], [41.5995081529777, -87.53951396664912],[41.60087340081805, -87.544336846242],[41.601043446489534, -87.5457535385183],[41.600994354108906, -87.55668366831013],[41.60085929100637, -87.55663812893451],],{color: 'darkorange'}).addTo(myMap);
+						// add stylized polygon
+						var polygon = L.polygon([[41.60086881376919, -87.55174168319168],[41.60080144930616, -87.55880466242863], [41.594652505032116, -87.55852157361691], [41.59535489668997, -87.55298967196698], [41.59550251200476, -87.55169711223701],],{ color: 'darkorange', fillColor: 'grey'}).addTo(myMap);
+						//add marker for mall
+						var theMall = L.icon({
+							iconUrl: 'links/mall.png',
+							iconSize: [35,50],
+						}) 
+
+						var marker=L.marker([41.59849476710853, -87.55483800514256],{
+							icon:theMall
+						}).addTo(myMap).bindPopup("Woodridge Mall");
+
+					</script>
+
+		</div>
+
+
+
+
+			<footer>
+				<div class="footer">
+					<div class="name">
+						<p> <b> Tolu Atoyebi </b> <br> Homework #4 </p>  
+					</div>
+					<div class="course">
+						<p>UPP 465: Web GIS <br> Summer 2021</p>
+					</div>
+				</div>
+			</footer>
+
+
+</body>
+
+</html>
